@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 Your file was uploaded!
+
+  p Lorem ipsum
+  
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg
