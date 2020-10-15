@@ -14,8 +14,10 @@ appInsights.setup(appInsightsKey).start();
 // Hardcoded target Azure Storage Container (top level folder)
 const targetContainer = 'sampleuploads'
 
-// 10 MB file maximum size.
-const maxSize = 1024 * 1024 * 10;
+const maxFileInMB = 10;
+
+// file upload maximum size.
+const maxSize = 1024 * 1024 * maxFileInMB;
 
 const app = express();
 
@@ -60,7 +62,7 @@ app.use(cors());
 app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
-	res.render('file_upload_form', { appinsightskey: appInsightsKey});
+	res.render('file_upload_form', { appinsightskey: appInsightsKey, maxFileSize: maxFileInMB});
 });
 
 app.get('/uploaded', (req, res) => {

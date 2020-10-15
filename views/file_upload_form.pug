@@ -3,11 +3,13 @@ extends layout
 block content
   h1 Select a file to upload
 
-  p Select a JPEG, PNG or MP4 to upload to see how we can use event-driven serverless solutions to solve real problems. 
+  p Select a JPEG or MP4 to upload to see how we can use event-driven serverless solutions to solve real problems. 
+
+  p Maximum file size is #{maxFileSize}MB.
 
   form(method='POST' action='upload-sample-file' enctype="multipart/form-data")
       label File:
-      input#samplefile.form-control(type='file', name='samplefile' required='true' accept='.jpg,.png,.mp4')
+      input#samplefile.form-control(type='file', name='samplefile' required='true' accept='.jpg,.mp4')
       button.btn.btn-primary(type='submit') Submit
 
   if errors 
