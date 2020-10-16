@@ -26,7 +26,7 @@ jobs:
         name: Prepare
         id: prep
         run: |
-          DOCKER_IMAGE=name/app
+          DOCKER_IMAGE=${{ secrets.ACRDEMO01_REPO }}/blobuploader
           VERSION=noop
           if [ "${{ github.event_name }}" = "schedule" ]; then
             VERSION=nightly
@@ -71,6 +71,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
+          push: true
           tags: ${{ steps.prep.outputs.tags }}
           labels: |
             org.opencontainers.image.title=${{ fromJson(steps.repo.outputs.result).name }}
